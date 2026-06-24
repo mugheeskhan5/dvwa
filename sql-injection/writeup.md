@@ -123,7 +123,7 @@ The input method changed from a free-text field to a dropdown menu — at first 
 $id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id);
 $query = "SELECT first_name, last_name FROM users WHERE user_id = $id;";
 ```
-![Medium dropdown interface](assests/interface-medium.png)
+![Medium source code](assests/source-code-medium.png)
 Two things to note here:
 - `mysqli_real_escape_string` escapes special characters like quotes — but the query uses no quotes around `$id`. Escaping quotes is useless when the parameter is unquoted in an integer context.
 - The `id` value is still concatenated directly into the query.
@@ -163,7 +163,9 @@ The developer attempted to fix the vulnerability by removing the text input fiel
 Two visible changes at this level:
 - The input is now delivered through a separate popup window
 - The query has a `LIMIT 1` clause added:
+![High level popup interface](assests/interface-high.png)
 
+![High level source code](assests/source-code-high.png)
 ```php
 $id = $_SESSION['id'];
 $query = "SELECT first_name, last_name FROM users WHERE user_id = '$id' LIMIT 1;";
