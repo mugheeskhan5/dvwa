@@ -48,7 +48,6 @@ Then navigate to `http://localhost` and set the security level under DVWA Securi
 ## Author
 
 **Muhammad Mughees Khan**  
-Cybersecurity undergraduate at FAST-NUCES, Karachi  
 [GitHub](https://github.com/mugheeskhan5) • [LinkedIn](https://www.linkedin.com/in/mughees-khan-1b641a331/?skipRedirect=true)
 ---
 
