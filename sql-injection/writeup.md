@@ -217,5 +217,6 @@ SQL Injection is not a UI problem — it is a backend problem. Removing input fi
 
 ---
 Read it on Medium: https://medium.com/@khanmughees587/dvwa-sql-injection-c1bb8786200d
+
 *Part of the [DVWA Writeup Series](../README.md)*  
 *Next: SQL Injection (Blind)*
