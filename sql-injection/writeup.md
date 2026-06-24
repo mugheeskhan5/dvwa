@@ -124,6 +124,7 @@ $id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id);
 $query = "SELECT first_name, last_name FROM users WHERE user_id = $id;";
 ```
 ![Medium source code](assests/source-code-medium.png)
+
 Two things to note here:
 - `mysqli_real_escape_string` escapes special characters like quotes — but the query uses no quotes around `$id`. Escaping quotes is useless when the parameter is unquoted in an integer context.
 - The `id` value is still concatenated directly into the query.
@@ -147,7 +148,7 @@ id=1 UNION SELECT user,password FROM users#&Submit=Submit
 7. Click **Forward** to send the modified request
 
 Since the column enumeration was already done at Low level, credentials can be extracted directly without repeating the reconnaissance steps.
-
+![Medium Output](assests/medium-level-pass.png)
 **Output observed:** Same credential dump as Low — all user hashes extracted successfully.
 
 ### Why Medium Was Still Exploitable
