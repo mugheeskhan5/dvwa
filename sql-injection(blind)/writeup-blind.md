@@ -161,7 +161,8 @@ Additional hardening:
 Hiding output does not fix SQL Injection — it just raises the effort required to exploit it. The vulnerability lives in the backend query construction, not the frontend display. An attacker with SQLMap can extract an entire database from a blind injection point in minutes. The only fix that works is parameterized queries.
 
 ---
-
+Read it on Medium: [MEDIUM-ARTICLE](https://medium.com/@khanmughees587/dvwa-sql-injection-blind-f77481cf920b?postPublishedType=repub)
 *Part of the [DVWA Writeup Series](../README.md)*  
 *Previous: [SQL Injection](../sql-injection/writeup.md)*  
+*Re
 
