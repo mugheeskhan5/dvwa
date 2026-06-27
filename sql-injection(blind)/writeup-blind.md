@@ -12,9 +12,14 @@ Blind SQL Injection is the same underlying vulnerability as regular SQL Injectio
 
 This makes manual extraction extremely tedious. Instead of seeing the data returned, you are limited to observing **true/false behavior** — does the page respond differently when the condition is true versus false? Every piece of information has to be inferred one bit at a time from those binary responses.
 
+![true](assets/true.png)
+
+![true](assets/false.png)
+
 The backend source code contains the exact same vulnerabilities as regular SQL Injection — no parameterized queries, no sanitization. Only the output is blocked, not the vulnerability itself.
 
 ---
+
 
 ## Tool — SQLMap
 
@@ -36,7 +41,7 @@ SQLMap automates the true/false probing process, sending crafted payloads and in
 
 The source code is identical in vulnerability to the Low level of regular SQL Injection — the id parameter is fetched from the request and concatenated directly into the query. The only difference is the application blocks output from being displayed to the user.
 
-![source-code](assets/Screenshot 2026-06-27 152016.png)
+![source-code](assets/low-source.png)
 
 ### Exploitation
 
@@ -64,7 +69,7 @@ Breaking down the flags:
 
 Medium switches the input method to a dropdown and changes the request type from GET to **POST** — the parameters are now sent in the request body rather than the URL.
 
-![medium-source-code](assets/Screenshot 2026-06-27 152234.png)
+![medium-source-code](assets/medium-source.png)
 
 ### Exploitation
 
@@ -76,7 +81,7 @@ sqlmap -u "http://localhost/vulnerabilities/sqli_blind/" \
 --cookie="PHPSESSID=YOUR_COOKIE; security=medium" \
 --batch
 ```
-![sql-map](assets/Screenshot 2026-06-23 045231.png)
+![sql-map](assets/medium-command.png)
 
 The key change here is the `--data` flag:
 
@@ -84,7 +89,7 @@ The key change here is the `--data` flag:
 - `--batch` — runs SQLMap non-interactively, automatically accepting default choices instead of prompting for input at each decision point
 - The URL no longer contains parameters — they move into the `--data` body
 
-![output](assets/Screenshot 2026-06-23 045243.png)
+![output](assets/dbs.png)
 
 **Output:** Same database enumeration result as Low. The POST vs GET distinction is a transport-level change — the underlying injection vulnerability is identical.
 
@@ -100,7 +105,7 @@ Changing from GET to POST does not affect exploitability in any way. The paramet
 
 High security introduces a different input mechanism — the `id` value is passed directly inside the **cookie** rather than as a URL parameter or POST body. This is a less common attack surface that requires adjusting how SQLMap delivers its payloads.
 
-![high-source-code](assets/Screenshot 2026-06-27 152609.png)
+![high-source-code](assets/high-source.png)
 
 ### Exploitation
 
@@ -111,7 +116,7 @@ sqlmap -u "http://localhost/vulnerabilities/sqli_blind/" \
 --ignore-code=404 \
 --batch
 ```
-![command](assets/Screenshot 2026-06-23 052938.png)
+![command](assets/sql-high.png)
 
 Breaking down the new flags:
 
@@ -119,7 +124,7 @@ Breaking down the new flags:
 - `--level=2` — controls how aggressively SQLMap tests parameters. Level 1 (default) tests only GET/POST parameters. Level 2 extends testing to cookies. This is required here since `id` is in the cookie. Levels go up to 5, which tests every possible parameter including HTTP headers
 - `--ignore-code=404` — prevents SQLMap from stopping if the server returns 404 responses during probing, which DVWA does under certain conditions at this level
 
-![output](assets/Screenshot 2026-06-23 052952.png)
+![output](assets/high-output.png)
 
 **Output:** SQLMap successfully identifies the cookie-based injection point and returns system information — confirming exploitation even when the id is delivered through an unconventional channel.
 
