@@ -9,7 +9,7 @@ A module-by-module writeup series for the Damn Vulnerable Web Application (DVWA)
 | # | Module | Status |
 |---|--------|--------|
 | 01 | [SQL Injection](sql-injection/writeup.md) | ✅ Done |
-| 02 | SQL Injection (Blind) | ✅ Done |
+| 02 | [SQL Injection] (sql-injection(blind)/writeup-blind.md) | ✅ Done |
 | 03 | XSS (Reflected) | 🔄 Coming Soon |
 | 04 | XSS (Stored) | 🔄 Coming Soon |
 | 05 | Command Injection | 🔄 Coming Soon |
