@@ -216,7 +216,7 @@ Additional hardening measures:
 SQL Injection is not a UI problem — it is a backend problem. Removing input fields, adding dropdowns, or restricting the number of returned rows does nothing if user-controlled data is still concatenated into SQL queries. The only real fix is parameterized queries. Every other measure is a speed bump, not a wall.
 
 ---
-Read it on Medium: https://medium.com/@khanmughees587/dvwa-sql-injection-c1bb8786200d
+Read it on Medium: [MEDIUM-ARTICLE](https://medium.com/@khanmughees587/dvwa-sql-injection-c1bb8786200d)
 
 *Part of the [DVWA Writeup Series](../README.md)*  
 *Next: SQL Injection (Blind)*
