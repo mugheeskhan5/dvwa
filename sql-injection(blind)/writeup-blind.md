@@ -147,4 +147,4 @@ Hiding output does not fix SQL Injection — it just raises the effort required 
 
 *Part of the [DVWA Writeup Series](../README.md)*  
 *Previous: [SQL Injection](../sql-injection/writeup.md)*  
-*Next: XSS (Reflected)*
+
