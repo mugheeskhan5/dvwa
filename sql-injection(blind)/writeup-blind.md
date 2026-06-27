@@ -36,7 +36,7 @@ SQLMap automates the true/false probing process, sending crafted payloads and in
 
 The source code is identical in vulnerability to the Low level of regular SQL Injection — the id parameter is fetched from the request and concatenated directly into the query. The only difference is the application blocks output from being displayed to the user.
 
-![source-code](assets/low-source-code)
+![source-code](assets/low-source-code.png)
 
 ### Exploitation
 
