@@ -237,3 +237,4 @@ Brute force protection is not one feature — it is a stack of controls. A sleep
 
 *Part of the [DVWA Writeup Series](../README.md)*  
 *Previous: [SQL Injection (Blind)](../sql-injection(blind)/writeup-blind.md)*  
+*Read on MEDIUM: [MEDIUM](https://medium.com/@khanmughees587/brute-force-014d5491787c?postPublishedType=repub)*
