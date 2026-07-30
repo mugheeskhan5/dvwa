@@ -175,5 +175,5 @@ A complete defence includes:
 Command injection defences fail in the same pattern seen across Medium and High: developers try to enumerate and block *bad* input instead of defining and enforcing what *good* input looks like. Every blacklist — whether a plain string match or a regex — has gaps, because the shell has dozens of ways to chain, substitute, and pipe commands. The only durable fix is to never let user input reach a shell interpreter unescaped, and to validate against a strict allow-list before it gets anywhere near `exec`-family functions.
 
 ---
-*Part of the DVWA Writeup Series*
-*Previous: Brute Force*
+*Part of the [DVWA Writeup Series](../README.md)*  
+*Previous: [Brute Force](../brute-force.md)*
