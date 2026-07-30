@@ -12,12 +12,12 @@ A module-by-module writeup series for the Damn Vulnerable Web Application (DVWA)
 | 02 | [SQL Injection Blind](sql-injection(blind)/writeup-blind.md) | ✅ Done |
 | 03 | XSS (Reflected) | 🔄 Coming Soon |
 | 04 | XSS (Stored) | 🔄 Coming Soon |
-| 05 | Command Injection | 🔄 Coming Soon |
-| 06 | File Upload | 🔄 Coming Soon |
-| 07 | CSRF | 🔄 Coming Soon |
-| 08 | Brute Force | 🔄 Coming Soon |
+| 05 | [Command Injection](command-injection/Command-Injection.md) | ✅ Done |
+| 06 | [File Upload](file-upload/File-Upload.md) | ✅ Done |
+| 07 | [CSRF](csrf/CSRF.md) | ✅ Done |
+| 08 | [Brute Force](brute-force/writeup-brute-force.md) | ✅ Done |
 | 09 | File Inclusion | 🔄 Coming Soon |
-| 10 | Weak Session IDs | 🔄 Coming Soon |
+| 10 | [Weak Session IDs](weak-session-IDs/Weak-Session-IDs.md) | ✅ Done |
 
 ---
 
