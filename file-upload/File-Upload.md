@@ -207,5 +207,5 @@ A complete defence includes:
 Each DVWA level checks a different signal — filename, `Content-Type` header, magic bytes — and each signal can be satisfied without the file actually being safe. A polyglot file is the clearest illustration of this: it's not "hiding" from the check, it genuinely *is* a valid GIF, which is exactly what `getimagesize()` was asked to confirm. Real protection has to stop trusting the upload as a passive artifact to be classified, and instead actively strip it down to only the data format it claims to be (re-encoding), while making sure the destination can never execute code regardless of what slips through.
 
 ---
-*Part of the DVWA Writeup Series*
-*Previous: Command Injection*
+*Part of the [DVWA Writeup Series](../README.md)*  
+*Previous: [Command Injection](../command-injection.md)*
