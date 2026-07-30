@@ -185,5 +185,5 @@ A complete defence includes:
 A "random-looking" value is not the same as a random value. Hashing something predictable — a counter, a timestamp, or both together — only changes the *appearance* of the session ID, not its true entropy. Every level in this module fails for the same underlying reason: the generation algorithm derives session IDs from inputs an attacker can observe, narrow down, or brute-force, rather than from a properly seeded cryptographic random number generator. Real session ID security starts and ends with using a CSPRNG with adequate length — everything else is decoration.
 
 ---
-*Part of the DVWA Writeup Series*
-*Previous: CSRF*
+*Part of the [DVWA Writeup Series](../README.md)*  
+*Previous: [CSRF](../csrf.md)*
