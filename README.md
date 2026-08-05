@@ -1,6 +1,6 @@
 # DVWA Writeups
 
-A module-by-module writeup series for the Damn Vulnerable Web Application (DVWA). Each writeup covers Low, Medium, and High security levels — explaining not just the payloads but why each level fails and what a real fix looks like.
+A module-by-module writeup series for the Damn Vulnerable Web Application (DVWA). Each writeup covers Low, Medium and High security levels -explaining not just the payloads but why each level fails and what a real fix looks like.
 
 ---
 
